@@ -2,11 +2,12 @@
     width: 280px;
     height: 100%;
     min-height: 100vh;
+    /* margin-top: -5px; */
     background: rgba(34,34,34,0.6);
     backdrop-filter: blur(10px);
     padding: 20px 15px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.17, 0.885, 0.32, 1.275);
 }
 
 .LeftMenu .logoContainer {
@@ -21,7 +22,12 @@
 }
 
 .LeftMenu .logoContainer i:nth-of-type(2) {
+    font-size: 20px !important;
+}
+
+.leftMenu .logoContainer h2 {
     font-size: 20px;
+    margin-left: 20px;
 }
 
 .searchBox {
@@ -132,7 +138,7 @@
      justify-content: space-between;
      align-items: center;
      color: #848484;
-     margin-bottom: 10px;
+     margin-bottom: 5px;
 }
 
 .playListContainer .nameContainer p {
@@ -187,10 +193,11 @@
 
 .trackList {
     border-top:1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
+    /* padding-top: 2px;*/
+    margin-top: 20px; 
 }
 
- /* {
+ 
 .trackList .top {
     display: flex;
     align-items: center;
@@ -241,7 +248,7 @@
     appearance: none;
 }
 
-  Chrome %% Safari Browser  
+  /* Chrome %% Safari Browser   */
 .trackList .bottom input::before {
     position: absolute;
     content: "";
@@ -255,11 +262,11 @@
     transition: width 250ms linear;
 }
 
+/* Only for browser Chrome & Safari */
 .trackList .bottom input::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 10px;
-    border-radius: 10px;
-    background: #f1f1f1;
+    height: 20px;
     border-radius: 10px;
     background: #f1f1f1;
     border: 2px solid #000;
@@ -269,9 +276,62 @@
     z-index: 3;
     box-sizing: border-box;
     transition: all 250ms linear;
-} 
+}  
 
-} */
+/* Only for FireFox */
+.trackList .bottom input::-moz-progress-bar{
+    background: #49e12e;
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
+    z-index: 2;
+    transition: width 250ms linear;
+}
+
+.trackList .bottom input::-moz-range-thumb{
+    background: #49e12e;
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
+    z-index: 2;
+    transition: width 250ms linear;
+}
+
+@media screen and (max-width:550px){
+    .leftMenu{
+        width: 64px;
+        min-width: 64px;
+    }
+
+    .leftMenu .searchBox {
+        display: none;    
+    }
+
+    .leftMenu .trackList {
+        display: none;    
+    }
+
+    .leftMenu .playListContainer {
+        display: none;    
+    }
+
+    .leftMenu .MenuContainer ul li a span {
+        display: none;
+    }
+
+    .leftMenu .MenuContainer ul li a i {
+        font-size: 26px;
+    }
+
+    .leftMenu .MenuContainer ul li {
+        margin: 26px;
+    }
+
+    .leftMenu .logoContainer h2 {
+        margin-left: 20px;
+    }
+
+}
 
 
 
