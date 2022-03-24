@@ -190,10 +190,11 @@
     padding-top: 20px;
 }
 
+ /* {
 .trackList .top {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
+     justify-content: space-between; 
 }
 
 .trackList .top img {
@@ -240,7 +241,7 @@
     appearance: none;
 }
 
- /* Chrome %% Safari Browser  */
+  Chrome %% Safari Browser  
 .trackList .bottom input::before {
     position: absolute;
     content: "";
@@ -259,10 +260,18 @@
     width: 10px;
     border-radius: 10px;
     background: #f1f1f1;
+    border-radius: 10px;
+    background: #f1f1f1;
+    border: 2px solid #000;
+    cursor: pointer;
+    position: relative;
+    margin: -2px 0 0 0;
+    z-index: 3;
+    box-sizing: border-box;
+    transition: all 250ms linear;
 } 
 
-
-
+} */
 
 
 
