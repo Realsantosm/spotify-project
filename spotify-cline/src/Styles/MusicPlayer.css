@@ -100,13 +100,14 @@
     cursor: pointer;
 }
 
+/* Chrome & Safari */
 .songAttributes .bottom .progressBar:before {
     position: absolute;
     content: "";
     top: 0;
     left: 0;
     background: #848484;
-    width: 50%;
+    width: var(--player-played);
     height: 100%;
     border-radius: 10px;
     z-index: 2;
@@ -122,8 +123,7 @@
     outline: none;
 }
 
-/* Firefox and Safari */
-
+/* FireFox */
 .songAttributes .bottom .progressBar::-moz-range-track {
     width: 78%;
     height: 5px;
@@ -137,7 +137,7 @@
 
 .songAttributes .bottom .progressBar::-moz-range-progress {
     background: #848484;
-    width: 50%;
+    width: var(--player-played);
     height: 100%;
     border-radius: 10px;
     z-index: 2;

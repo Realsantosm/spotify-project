@@ -10,10 +10,12 @@ function MusicPlayer({song, imgSrc}) {
     const [isLove, setLoved] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
 
 
     const audioPlayer = useRef();
     const progressBar = useRef();
+    const animationRef = useRef();
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current.duration);
@@ -21,16 +23,50 @@ function MusicPlayer({song, imgSrc}) {
     }, [audioPlayer?.current?.loadedmetadata,
          audioPlayer?.current?.readyState]);
 
+         const changePlayPause = () => {
+            const prevValue = isPlaying;
+            if(!prevValue){
+                audioPlayer.current.play();
+                animationRef.current = requestAnimationFrame(whilePlaying);
+            } else {
+                audioPlayer.current.pause();
+                cancelAnimationFrame(animationRef.current);
+            }
+            setPlaying(!prevValue);
+        };
 
-    const changePlayPause = () => {
-        const prevValue = isPlaying;
-        if(!prevValue){
-            audioPlayer.current.play();
-        } else {
-            audioPlayer.current.pause();
-        }
-        setPlaying(!prevValue);
+    const CalculateTime = (sec) =>{
+        const minutes = Math.floor(sec / 60);
+        const returnMin = minutes < 10 ? `0${minutes}`: `${minutes}`;
+
+        const seconds = Math.floor(sec % 60);
+        const returnSec = seconds < 10 ? `0${seconds}` : `${seconds}`;
+
+        return `${returnMin}:${returnSec}`;
     };
+
+    
+
+    const whilePlaying = () => {
+        progressBar.current.value 
+        = audioPlayer.current.currentTime;
+        changeCurrentTime();
+    };
+
+    const changeProgress = () => {
+        audioPlayer.current.currentTime 
+        = progressBar.current.value;
+        changeCurrentTime();
+    };
+
+    const changeCurrentTime = () => {
+        progressBar.current.style.setProperty('--player-played',
+        `${(progressBar.current.value / duration) *100}%`);
+        
+        setCurrentTime(progressBar.current.value); 
+    };
+
+    
 
     const changeLoved = () => {
         setLoved(!isLove);
@@ -73,9 +109,13 @@ function MusicPlayer({song, imgSrc}) {
             </div>
           </div>
           <div className='bottom'>
-              <div className='currentnTime'>00:00</div>
-              <input type="range" className='progressBar' ref="progressBar"/>
-              <div className='duration'>{duration}</div>
+              <div className='currentnTime'>{CalculateTime(currentTime)}</div>
+              <input type="range" className='progressBar' ref="progressBar" onChange={changeProgress}/>
+              <div className='duration'>{(duration && !isNaN(duration) && CalculateTime(duration))?
+              CalculateTime(duration) :
+              `00:00`
+              }
+              </div>
           </div>
       </div>
   </div>;
