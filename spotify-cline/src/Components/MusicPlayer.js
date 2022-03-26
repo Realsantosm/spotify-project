@@ -30,7 +30,7 @@ function MusicPlayer({song, imgSrc}) {
                 animationRef.current = requestAnimationFrame(whilePlaying);
             } else {
                 audioPlayer.current.pause();
-                cancelAnimationFrame(animationRef.current);
+                cancelAnimationFrame(animationRef.current); 
             }
             setPlaying(!prevValue);
         };
@@ -51,6 +51,9 @@ function MusicPlayer({song, imgSrc}) {
         progressBar.current.value 
         = audioPlayer.current.currentTime;
         changeCurrentTime();
+
+        animationRef.current = requestAnimationFrame(whilePlaying);
+        
     };
 
     const changeProgress = () => {
