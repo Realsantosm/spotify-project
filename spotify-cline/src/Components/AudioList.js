@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { FaHeadphones, FaHeart, FaRegClock, FaRegHeart } from 'react-icons/fa';
+import "../styles/LeftMenu.css";
 import { MusicPlayer } from './MusicPlayer';
 
 import { Songs } from "./Songs";
 
 function AudioList() {
 
+
     const [songs, setSongs] = useState(Songs);
     const [song, setSong] = useState(Songs[0].song);
     const [img, setImage] = useState(Songs[0].imgSrc);
+    const [auto, setAuto] = useState(false);
 
     useEffect(() => {
         const songs = document.querySelectorAll(".songs");
@@ -23,7 +26,7 @@ function AudioList() {
 
     const changeFavourite = (id) => {
         Songs.forEach(song => {
-            if(song.id == id){
+            if(song.id === id){
                 song.favourite = !song.favourite;
             }
         });

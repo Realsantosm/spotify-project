@@ -37,7 +37,7 @@ function MainContainer() {
       </p>
     </div>
 
-    <AudioList />
+    {/* <AudioList /> */}
   </div>;
   
 }
